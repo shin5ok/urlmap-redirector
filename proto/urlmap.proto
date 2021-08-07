@@ -1,0 +1,42 @@
+syntax = "proto3";
+package urlmap;
+
+service Redirection {
+  rpc GetOrgByPath (RedirectPath) returns (OrgUrl);
+  rpc GetInfoByUser (User) returns (ArrayRedirectData);
+  rpc SetInfo (RedirectData) returns (OrgUrl);
+}
+
+message RedirectPath {
+  string path = 1;
+}
+
+message OrgUrl {
+  string org = 1;
+}
+
+message User {
+  string user = 1;
+}
+
+message ArrayRedirectData {
+  repeated RedirectData redirects = 1;
+}
+
+message RedirectData {
+    RedirectInfo redirect = 1;
+    message ValidDate {
+        string begin = 1;
+        string end  = 2;
+    }
+}
+
+message RedirectInfo {
+    string user = 1;
+    string redirectPath = 2;
+    string org = 3;
+    string host = 4;
+    string comment = 5;
+    int32 active = 6;
+
+}
