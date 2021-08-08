@@ -16,11 +16,11 @@ def root():
 
 @app.route('/<path>')
 def get_org(path):
-	print(path)
 	channel = grpc.insecure_channel(grpc_host)
 	stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 	req = pb.urlmap_pb2.RedirectPath(path=path)
 	org = stub.GetOrgByPath(req)
+	print(f"/{path} > {org.org}")
 	return redirect(org.org)
 
 if __name__ == "__main__":
