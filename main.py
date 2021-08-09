@@ -16,12 +16,15 @@ def root():
 
 @app.route('/<path>')
 def get_org(path):
-	channel = grpc.insecure_channel(grpc_host)
-	stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
-	req = pb.urlmap_pb2.RedirectPath(path=path)
-	org = stub.GetOrgByPath(req)
-	print(f"/{path} > {org.org}")
-	return redirect(org.org)
+    channel = grpc.insecure_channel(grpc_host)
+    stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
+    req = pb.urlmap_pb2.RedirectPath(path=path)
+    org = stub.GetOrgByPath(req)
+    print(f"/{path} > {org.org}")
+    return redirect(org.org)
+
+def notify():
+	pass
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))

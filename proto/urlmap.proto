@@ -13,6 +13,7 @@ message RedirectPath {
 
 message OrgUrl {
   string org = 1;
+  string notify_to = 2;
 }
 
 message User {

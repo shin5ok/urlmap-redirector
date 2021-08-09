@@ -2,4 +2,4 @@ proto_outdir = "./proto"
 
 [[dependencies]]
   target = "github.com/shin5ok/urlmap-api/proto"
-  branch = "master"
+  branch = "main"
