@@ -10,18 +10,31 @@ app = Flask(__name__)
 
 grpc_host = os.environ.get('GRPC_HOST', 'localhost:8080')
 
+fail_site = "/Fail"
+
+# reserve string 'Ping'
 @app.route('/Ping')
-def root():
+def _root():
     return "Pong"
+
+@app.route('/Fail/<path>')
+def _fail(path):
+    return f"Not Found /{path}"
 
 @app.route('/<path>')
 def get_org(path):
     channel = grpc.insecure_channel(grpc_host)
-    stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
-    req = pb.urlmap_pb2.RedirectPath(path=path)
-    org = stub.GetOrgByPath(req)
-    print(f"/{path} > {org.org}")
-    return redirect(org.org)
+    try:
+        stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
+        req = pb.urlmap_pb2.RedirectPath(path=path)
+        org = stub.GetOrgByPath(req)
+        print(f"/{path} > {org.org}")
+        r = org.org
+    except Exception as e:
+        print(e)
+        print(f"{fail_site}/{path}")
+        r = f"{fail_site}/{path}"
+    return redirect(r)
 
 def notify():
 	pass
