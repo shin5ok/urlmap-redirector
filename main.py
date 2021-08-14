@@ -32,8 +32,8 @@ def get_org(path):
         r = org.org
     except Exception as e:
         print(e)
-        print(f"{fail_site}/{path}")
         r = f"{fail_site}/{path}"
+        print(r)
     return redirect(r)
 
 def notify():
