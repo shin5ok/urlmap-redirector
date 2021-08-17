@@ -6,9 +6,14 @@ sys.path.append("pb")
 import pb.urlmap_pb2_grpc
 import pb.urlmap_pb2
 
+import secretm
+
 app = Flask(__name__)
 
-grpc_host = os.environ.get('GRPC_HOST', 'localhost:8080')
+grpc_host = os.environ.get('URLMAP_API')
+project = os.environ.get('PROJECT')
+if not grpc_host:
+    grpc_host = secretm.Secretm(project).get("URLMAP_API")
 
 fail_site_path = "/Failure"
 
