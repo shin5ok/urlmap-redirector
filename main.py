@@ -19,7 +19,7 @@ fail_site_path = "/Failure"
 
 # reserve string 'Ping'
 @app.route('/Ping')
-def _root():
+def _ping():
     return "Pong"
 
 @app.route(f'/{fail_site_path}/<path>')
