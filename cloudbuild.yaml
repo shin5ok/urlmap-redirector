@@ -1,0 +1,28 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/urlmap-redirector:$SHORT_SHA', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/urlmap-redirector:$SHORT_SHA']
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Create manifest
+  entrypoint: /bin/sh
+  args:
+    - '-c'
+    - |
+      git clone https://$$TOKEN@github.com/shin5ok/gitops-urlmap working.$SHORT_SHA && \
+      cd working.$SHORT_SHA/urlmap-redirector && \
+      git checkout stage && \
+      sed -e "s/SHORT_SHA/${SHORT_SHA}/" deployment.yaml.tpl | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
+      git add .
+      git config --global user.email shingo.test@55mp.com
+      git config --global user.name shingo
+      git commit -va -m "Update by GitOps"
+      git push origin stage
+      cat deployment.yaml
+  secretEnv: ['TOKEN']
+availableSecrets:
+  secretManager: 
+  - versionName: projects/638260011561/secrets/myrepo/versions/2
+    env: TOKEN
