@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 grpc_host = os.environ.get('GRPC_HOST', 'localhost:8080')
 
-fail_site_path = "/Fail"
+fail_site_path = "/Failure"
 
 # reserve string 'Ping'
 @app.route('/Ping')
