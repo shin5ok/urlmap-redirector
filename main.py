@@ -18,6 +18,7 @@ if not grpc_host:
 fail_site_path = "/Failure"
 
 # reserve string 'Ping'
+@app.route('/')
 @app.route('/Ping')
 def _ping():
     return "Pong"
