@@ -10,14 +10,14 @@ app = Flask(__name__)
 
 grpc_host = os.environ.get('GRPC_HOST', 'localhost:8080')
 
-fail_site = "/Fail"
+fail_site_path = "/Fail"
 
 # reserve string 'Ping'
 @app.route('/Ping')
 def _root():
     return "Pong"
 
-@app.route('/Fail/<path>')
+@app.route(f'/{fail_site_path}/<path>')
 def _fail(path):
     return f"Not Found /{path}"
 
@@ -32,7 +32,7 @@ def get_org(path):
         r = org.org
     except Exception as e:
         print(e)
-        r = f"{fail_site}/{path}"
+        r = f"{fail_site_path}/{path}"
     return redirect(r)
 
 def notify():
