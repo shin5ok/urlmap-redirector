@@ -41,7 +41,7 @@ def get_org(path):
         org = stub.GetOrgByPath(req)
         print(f"/{path} > {org.org}")
         if not org.org:
-            raise "no record"
+            raise Exception("no record")
         r = org.org
     except Exception as e:
         print(e)
