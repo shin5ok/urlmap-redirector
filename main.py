@@ -4,6 +4,7 @@ import grpc
 import sys
 import logging
 sys.path.append("pb")
+
 import pb.urlmap_pb2_grpc
 import pb.urlmap_pb2
 
@@ -11,10 +12,11 @@ import secretm
 
 app = Flask(__name__)
 
-grpc_host = os.environ.get('URLMAP_API')
 project = os.environ.get('PROJECT')
+grpc_host = os.environ.get('URLMAP_API')
 if not grpc_host:
     grpc_host = secretm.Secretm(project).get("URLMAP_API")
+
 channel = grpc.insecure_channel(grpc_host)
 stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 
