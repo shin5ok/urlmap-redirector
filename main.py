@@ -16,6 +16,7 @@ project = os.environ.get('PROJECT')
 if not grpc_host:
     grpc_host = secretm.Secretm(project).get("URLMAP_API")
 channel = grpc.insecure_channel(grpc_host)
+stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 
 fail_site_path = "/Failure"
 
@@ -36,10 +37,11 @@ def _fail(path):
 def get_org(path):
     logging.info(f"connecting to {grpc_host}")
     try:
-        stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
         req = pb.urlmap_pb2.RedirectPath(path=path)
         org = stub.GetOrgByPath(req)
         print(f"/{path} > {org.org}")
+        if not org.org:
+            raise "no record"
         r = org.org
     except Exception as e:
         print(e)
