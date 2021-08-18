@@ -2,6 +2,7 @@ import os
 from flask import Flask, redirect
 import grpc
 import sys
+import logging
 sys.path.append("pb")
 import pb.urlmap_pb2_grpc
 import pb.urlmap_pb2
@@ -17,6 +18,8 @@ if not grpc_host:
 
 fail_site_path = "/Failure"
 
+logging.basicConfig(level=logging.INFO)
+
 # reserve string 'Ping'
 @app.route('/')
 @app.route('/Ping')
@@ -25,7 +28,9 @@ def _ping():
 
 @app.route(f'/{fail_site_path}/<path>')
 def _fail(path):
-    return f"Not Found /{path}"
+    path = f"Not Found /{path}"
+    logging.warning(path)
+    return path
 
 @app.route('/<path>')
 def get_org(path):
