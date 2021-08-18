@@ -29,10 +29,8 @@ def _ping():
 
 @app.route(f'/{fail_site_path}/<path>')
 def _fail(path):
-    path = f"Not Found /{path}"
-    logging.warning(path)
-    new_path = f'/{fail_site_path}/{path}'
-    return redirect(new_path)
+    contents = f"Not Found /{path}"
+    return contents
 
 @app.route('/<path>')
 def get_org(path):
