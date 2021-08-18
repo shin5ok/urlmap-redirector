@@ -15,6 +15,7 @@ grpc_host = os.environ.get('URLMAP_API')
 project = os.environ.get('PROJECT')
 if not grpc_host:
     grpc_host = secretm.Secretm(project).get("URLMAP_API")
+channel = grpc.insecure_channel(grpc_host)
 
 fail_site_path = "/Failure"
 
@@ -35,7 +36,6 @@ def _fail(path):
 @app.route('/<path>')
 def get_org(path):
     logging.info(f"connecting to {grpc_host}")
-    channel = grpc.insecure_channel(grpc_host)
     try:
         stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
         req = pb.urlmap_pb2.RedirectPath(path=path)
