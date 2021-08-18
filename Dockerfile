@@ -8,4 +8,4 @@ RUN pip install --upgrade pip && \
 	pip install -r requirements.txt
 
 USER nobody
-CMD exec gunicorn -b 0.0.0.0:8080 --error-logfile - --capture-output main:app
+CMD exec gunicorn -b 0.0.0.0:8080 --error-logfile - --access-logfile - --capture-output main:app
