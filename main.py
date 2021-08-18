@@ -34,6 +34,7 @@ def _fail(path):
 
 @app.route('/<path>')
 def get_org(path):
+    logging.info(f"connecting to {grpc_host}")
     channel = grpc.insecure_channel(grpc_host)
     try:
         stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
