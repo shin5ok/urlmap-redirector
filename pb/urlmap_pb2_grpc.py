@@ -29,6 +29,11 @@ class RedirectionStub(object):
         request_serializer=urlmap__pb2.RedirectData.SerializeToString,
         response_deserializer=urlmap__pb2.OrgUrl.FromString,
         )
+    self.SetUser = channel.unary_unary(
+        '/urlmap.Redirection/SetUser',
+        request_serializer=urlmap__pb2.User.SerializeToString,
+        response_deserializer=urlmap__pb2.User.FromString,
+        )
 
 
 class RedirectionServicer(object):
@@ -56,6 +61,13 @@ class RedirectionServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SetUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_RedirectionServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -73,6 +85,11 @@ def add_RedirectionServicer_to_server(servicer, server):
           servicer.SetInfo,
           request_deserializer=urlmap__pb2.RedirectData.FromString,
           response_serializer=urlmap__pb2.OrgUrl.SerializeToString,
+      ),
+      'SetUser': grpc.unary_unary_rpc_method_handler(
+          servicer.SetUser,
+          request_deserializer=urlmap__pb2.User.FromString,
+          response_serializer=urlmap__pb2.User.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
