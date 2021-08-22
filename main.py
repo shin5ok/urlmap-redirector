@@ -42,6 +42,7 @@ def get_org(path):
         req = pb.urlmap_pb2.RedirectPath(path=path)
         org = stub.GetOrgByPath(req)
         print(f"/{path} > {org.org}")
+        print(org)
         if not org.org:
             raise Exception("no record")
         r = org.org
