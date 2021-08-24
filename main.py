@@ -49,7 +49,7 @@ def get_org(path):
         r = org.org
         if topic_id and org.notify_to:
             import run_notify
-            logging.debug("do notify something")
+            logging.debug(f"do notify something to {topic_id}")
             run_notify.Pub(project, topic_id).run(org.notify_to)
     except Exception as e:
         logging.warn(e)
