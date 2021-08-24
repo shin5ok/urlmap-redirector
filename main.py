@@ -42,16 +42,17 @@ def get_org(path):
     try:
         req = pb.urlmap_pb2.RedirectPath(path=path)
         org = stub.GetOrgByPath(req)
-        print(f"return value is {org}")
-        print(f"/{path} > {org.org}")
+        logging.debug(f"return value is {org}")
+        logging.debug(f"/{path} > {org.org}")
         if not org.org:
             raise Exception("no record")
         r = org.org
         if topic_id and org.notify_to:
             import run_notify
+            logging.debug("do notify something")
             run_notify.Pub(project, topic_id).run(org.notify_to)
     except Exception as e:
-        print(e)
+        logging.warn(e)
         r = f"{fail_site_path}/{path}"
     return redirect(r)
 
