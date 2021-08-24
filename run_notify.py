@@ -19,7 +19,6 @@ class Pub():
 
 
     def run(self, message):
-        import asyncio
         data = message.encode("utf-8")
         try:
             publish_future = self.publisher.publish(

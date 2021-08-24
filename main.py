@@ -16,6 +16,7 @@ project = os.environ.get('PROJECT')
 grpc_host = os.environ.get('URLMAP_API')
 if not grpc_host:
     grpc_host = secretm.Secretm(project).get("URLMAP_API")
+topic_id = os.environ.get('TOPIC_ID')
 
 channel = grpc.insecure_channel(grpc_host)
 stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
@@ -46,13 +47,13 @@ def get_org(path):
         if not org.org:
             raise Exception("no record")
         r = org.org
+        if topic_id and org.notify_to:
+            import run_notify
+            run_notify.Pub(project, topic_id).run(org.notify_to)
     except Exception as e:
         print(e)
         r = f"{fail_site_path}/{path}"
     return redirect(r)
-
-def notify():
-	pass
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
