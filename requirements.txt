@@ -4,3 +4,4 @@ grpcio-tools==1.26.0
 flask
 gunicorn
 google-cloud-secret-manager
+google-cloud-pubsub==2.7.1
