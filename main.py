@@ -45,7 +45,7 @@ def get_org(path):
         logging.debug(f"return value is {org}")
         logging.debug(f"/{path} > {org.org}")
         if not org.org:
-            raise Exception("no record")
+            raise Exception(f"no any record for /{path}")
         r = org.org
         if topic_id and org.notify_to:
             import run_notify
