@@ -1,9 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/$PROJECT_ID/urlmap-redirector:$SHORT_SHA', '.']
+  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-northeast1-docker.pkg.dev/$PROJECT_ID/urlmap-redirector:$SHORT_SHA']
+  args: ['push', 'asia-northeast1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create manifest
