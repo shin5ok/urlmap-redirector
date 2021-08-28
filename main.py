@@ -52,7 +52,7 @@ def get_org(path):
             logging.debug(f"do notify something to {topic_id}")
             run_notify.Pub(project, topic_id).run(org.notify_to)
     except Exception as e:
-        logging.warn(e)
+        logging.warn(str(e))
         r = f"{fail_site_path}/{path}"
     return redirect(r)
 

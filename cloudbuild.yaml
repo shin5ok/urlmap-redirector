@@ -18,7 +18,7 @@ steps:
       git checkout stage && git merge origin/template -m Merge_from_template
       sed -e "s/SHORT_SHA/${SHORT_SHA}/" deployment.yaml.tpl | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
       git add .
-      git commit -va -m "Update by GitOps"
+      git commit -va -m "Update_by_GitOps"
       git push origin stage
       cat deployment.yaml
   secretEnv: ['TOKEN']
