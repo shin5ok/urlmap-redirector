@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 package urlmap;
 
 service Redirection {
@@ -6,6 +7,7 @@ service Redirection {
   rpc GetInfoByUser (User) returns (ArrayRedirectData);
   rpc SetInfo (RedirectData) returns (OrgUrl);
   rpc SetUser (User) returns (User);
+  rpc RemoveUser (User) returns (google.protobuf.Empty);
 }
 
 message RedirectPath {
