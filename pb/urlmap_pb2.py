@@ -13,6 +13,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -20,8 +21,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
-)
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\x1a\x1bgoogle/protobuf/empty.proto\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\x89\x02\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.User\x12\x32\n\nRemoveUser\x12\x0c.urlmap.User\x1a\x16.google.protobuf.Emptyb\x06proto3')
+  ,
+  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
 
 
@@ -59,8 +61,8 @@ _REDIRECTPATH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24,
-  serialized_end=71,
+  serialized_start=53,
+  serialized_end=100,
 )
 
 
@@ -97,8 +99,8 @@ _ORGURL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=73,
-  serialized_end=113,
+  serialized_start=102,
+  serialized_end=142,
 )
 
 
@@ -135,8 +137,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=115,
-  serialized_end=154,
+  serialized_start=144,
+  serialized_end=183,
 )
 
 
@@ -166,8 +168,8 @@ _ARRAYREDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=156,
-  serialized_end=216,
+  serialized_start=185,
+  serialized_end=245,
 )
 
 
@@ -204,8 +206,8 @@ _REDIRECTDATA_VALIDDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=274,
-  serialized_end=313,
+  serialized_start=303,
+  serialized_end=342,
 )
 
 _REDIRECTDATA = _descriptor.Descriptor(
@@ -234,8 +236,8 @@ _REDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=218,
-  serialized_end=313,
+  serialized_start=247,
+  serialized_end=342,
 )
 
 
@@ -300,8 +302,8 @@ _REDIRECTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=315,
-  serialized_end=425,
+  serialized_start=344,
+  serialized_end=454,
 )
 
 _ARRAYREDIRECTDATA.fields_by_name['redirects'].message_type = _REDIRECTDATA
@@ -373,8 +375,8 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=428,
-  serialized_end=641,
+  serialized_start=457,
+  serialized_end=722,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetOrgByPath',
@@ -410,6 +412,15 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_USER,
     output_type=_USER,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RemoveUser',
+    full_name='urlmap.Redirection.RemoveUser',
+    index=4,
+    containing_service=None,
+    input_type=_USER,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     serialized_options=None,
   ),
 ])
