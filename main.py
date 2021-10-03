@@ -25,7 +25,7 @@ fail_site_path = "/Failure"
 
 logging.basicConfig(level=logging.INFO)
 
-# reserve string 'Ping'
+# reserve path 'Ping'
 @app.route('/')
 @app.route('/Ping')
 def _ping():
@@ -38,7 +38,7 @@ def _fail(path):
 
 @app.route('/<path>')
 def get_org(path):
-    logging.info(f"connecting to {grpc_host}")
+    logging.debug(f"try to connect to {grpc_host}")
     try:
         req = pb.urlmap_pb2.RedirectPath(path=path)
         org = stub.GetOrgByPath(req)
