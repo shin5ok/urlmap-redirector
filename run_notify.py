@@ -1,7 +1,7 @@
 from google.cloud import pubsub_v1
 from concurrent import futures
 
-class Pub():
+class Pub:
 
     def __init__(self, project_id, topic_id):
         publisher = pubsub_v1.PublisherClient()
