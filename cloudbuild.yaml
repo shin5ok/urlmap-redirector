@@ -1,15 +1,11 @@
 steps:
 - name: 'gcr.io/kaniko-project/executor'
-  args:
-  # - --destination=us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA
-  - --destination=us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:1
-  - --cache=true
-  - --cache-ttl=24h
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA', '.']
-#
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA']
+  args: ['--destination=us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA', '--cache=true', '--cache-ttl=24h']
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA', '.']
+  #
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create manifest
