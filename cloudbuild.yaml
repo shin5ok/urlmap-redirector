@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/kaniko-project/executor:latest'
+- name: 'gcr.io/kaniko-project/executor'
   args:
   - --destination='us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-redirector:$SHORT_SHA'
   - --cache=true
