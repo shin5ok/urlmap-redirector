@@ -8,6 +8,7 @@ service Redirection {
   rpc SetInfo (RedirectData) returns (OrgUrl);
   rpc SetUser (User) returns (User);
   rpc RemoveUser (User) returns (google.protobuf.Empty);
+  rpc ListUsers (google.protobuf.Empty) returns (Users);
 }
 
 message RedirectPath {
@@ -45,4 +46,8 @@ message RedirectInfo {
     string comment = 5;
     int32 active = 6;
 
+}
+
+message Users {
+  repeated User users = 1;
 }
