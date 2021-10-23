@@ -56,14 +56,6 @@ def get_org(path):
         r = f"{fail_site_path}/{path}"
     return redirect(r)
 
-## @app.route('/listusers')
-## def listusers():
-##     try:
-##         users = stub.ListUsers()
-##     except Exception as e:
-##         pass
-##     return users
-
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
 
