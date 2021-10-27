@@ -21,6 +21,8 @@ topic_id = os.environ.get('TOPIC_ID')
 channel = grpc.insecure_channel(grpc_host)
 stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 
+version = "0.01"
+
 fail_site_path = "/Failure"
 
 logging.basicConfig(level=logging.INFO)
@@ -29,7 +31,7 @@ logging.basicConfig(level=logging.INFO)
 @app.route('/')
 @app.route('/Ping')
 def _ping():
-    return "Pong"
+    return f"Pong on {version}"
 
 @app.route(f'/{fail_site_path}/<path>')
 def _fail(path):
