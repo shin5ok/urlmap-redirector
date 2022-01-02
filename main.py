@@ -21,7 +21,7 @@ topic_id = os.environ.get('TOPIC_ID')
 channel = grpc.insecure_channel(grpc_host)
 stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 
-version = "0.60"
+version = "20220103"
 
 fail_site_path = "/Failure"
 
