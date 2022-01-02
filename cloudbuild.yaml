@@ -26,5 +26,5 @@ steps:
   secretEnv: ['TOKEN']
 availableSecrets:
   secretManager: 
-  - versionName: projects/${PROJECT}/secrets/myrepo/versions/latest
+  - versionName: projects/$PROJECT_NUMBER/secrets/myrepo/versions/latest
     env: TOKEN
