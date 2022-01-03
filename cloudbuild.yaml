@@ -16,8 +16,9 @@ steps:
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
       git clone https://$$TOKEN@github.com/shin5ok/gitops-urlmap working.$SHORT_SHA && \
-      cd working.$SHORT_SHA/urlmap-redirector && \
+      cd working.$SHORT_SHA
       git checkout stage && git merge origin/template -m Merge_from_template
+      cd urlmap-redirector/base
       sed -e "s/SHORT_SHA/${SHORT_SHA}/" deployment.yaml.tpl | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
       git add .
       git commit -va -m "Update_by_GitOps"
