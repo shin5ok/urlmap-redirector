@@ -1,3 +1,5 @@
+#!/bin/bash
+# make sure the project which you want to use
 kubectl create serviceaccount --namespace urlmap urlmap-redirector
 gcloud iam service-accounts create urlmap-redirector
 gcloud projects add-iam-policy-binding $PROJECT     --member "serviceAccount:urlmap-redirector@$PROJECT.iam.gserviceaccount.com"     --role "roles/secretmanager.secretAccessor"
