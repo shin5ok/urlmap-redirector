@@ -4,13 +4,14 @@ import mygcplogging
 
 app = Flask(__name__)
 
-logging = mygcplogging.GCPLog(__name__, "gke")
+MODE = os.environ.get("MODE", "gcp")
+logging = mygcplogging.GCPLog(__name__, MODE)
 
 @app.route('/')
 @app.route('/Ping')
 def _ping():
     version = os.environ.get("VERION", "0.01")
-    logging.info({"severity":"info","path":"/","tako":"ika"})
+    logging.info({"path":"/","tako":"ika"})
     return f"Pong on {version}"
 
 
