@@ -16,7 +16,7 @@ import secretm
 client = google.cloud.logging.Client()
 client.setup_logging()
 
-logging.basicConfig(level=logging.INFO)
+# logging.basicConfig(level=logging.INFO)
 
 
 app = Flask(__name__)
@@ -38,6 +38,7 @@ fail_site_path = "/Failure"
 @app.route("/")
 @app.route("/Ping")
 def _ping():
+    logging.info("access to /")
     return f"Pong on {version}"
 
 
