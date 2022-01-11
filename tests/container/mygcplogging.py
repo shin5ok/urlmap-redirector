@@ -25,7 +25,7 @@ class GCPLog:
     def info(self, logdict):
         # self._put("info", logdict)
         logdict["severity"] = "info"
-        self.logger.info(json.dumps(logdict))
+        self.logger.info(logdict)
 
     def _put(self, level, logdict):
         try:
