@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect
+from flask import Flask, redirect, request
 import grpc
 import sys
 
@@ -61,9 +61,11 @@ def get_org(path):
         r = org.org
         if topic_id and org.notify_to:
             import run_notify
+            src_ip = request.remote_addr
 
             logging.info(f"do notify something to {topic_id}")
-            run_notify.Pub(project, topic_id).run(org.notify_to)
+            message = f"/{path} to {org.org} from {src_ip}"
+            run_notify.Pub(project, topic_id).run(message)
     except Exception as e:
         logging.error(str(e))
         r = f"{fail_site_path}/{path}"
