@@ -61,8 +61,8 @@ def get_org(path):
         r = org.org
         if topic_id and org.notify_to:
             import run_notify
-            src_ip = request.remote_addr
 
+            src_ip = _get_addr()
             logging.info(f"do notify something to {topic_id}")
             message = f"/{path} to {org.org} from {src_ip}"
             run_notify.Pub(project, topic_id).run(message)
@@ -71,6 +71,17 @@ def get_org(path):
         r = f"{fail_site_path}/{path}"
     return redirect(r)
 
+def _get_addr():
+    x = request.headers.getlist("X-Forwarded-For")
+    ip = "cannot get ip"
+    try:
+        if x:
+            ip = x[0]
+        else:
+            ip = request.remote_addr
+    except:
+        pass
+    return ip
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
