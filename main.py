@@ -76,7 +76,9 @@ def _get_addr():
     ip = "cannot get ip"
     try:
         if x:
-            ip = x[0]
+            # example
+            # 119.229.14.242, 34.102.224.121
+            ip = x[0].split(",")[0]
         else:
             ip = request.remote_addr
     except:
