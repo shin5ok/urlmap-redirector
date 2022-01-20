@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\x1a\x1bgoogle/protobuf/empty.proto\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\"$\n\x05Users\x12\x1b\n\x05users\x18\x01 \x03(\x0b\x32\x0c.urlmap.User2\xbd\x02\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.User\x12\x32\n\nRemoveUser\x12\x0c.urlmap.User\x1a\x16.google.protobuf.Empty\x12\x32\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\r.urlmap.Usersb\x06proto3')
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\x1a\x1bgoogle/protobuf/empty.proto\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"J\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\x12\x11\n\tslack_url\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\"I\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\x12\x11\n\tslack_url\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\"$\n\x05Users\x12\x1b\n\x05users\x18\x01 \x03(\x0b\x32\x0c.urlmap.User2\xbd\x02\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.User\x12\x32\n\nRemoveUser\x12\x0c.urlmap.User\x1a\x16.google.protobuf.Empty\x12\x32\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\r.urlmap.Usersb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -87,6 +87,20 @@ _ORGURL = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='slack_url', full_name='urlmap.OrgUrl.slack_url', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='urlmap.OrgUrl.email', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -100,7 +114,7 @@ _ORGURL = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=102,
-  serialized_end=142,
+  serialized_end=176,
 )
 
 
@@ -125,6 +139,20 @@ _USER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='slack_url', full_name='urlmap.User.slack_url', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='urlmap.User.email', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -137,8 +165,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=144,
-  serialized_end=183,
+  serialized_start=178,
+  serialized_end=251,
 )
 
 
@@ -168,8 +196,8 @@ _ARRAYREDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=185,
-  serialized_end=245,
+  serialized_start=253,
+  serialized_end=313,
 )
 
 
@@ -206,8 +234,8 @@ _REDIRECTDATA_VALIDDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=303,
-  serialized_end=342,
+  serialized_start=371,
+  serialized_end=410,
 )
 
 _REDIRECTDATA = _descriptor.Descriptor(
@@ -236,8 +264,8 @@ _REDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=247,
-  serialized_end=342,
+  serialized_start=315,
+  serialized_end=410,
 )
 
 
@@ -302,8 +330,8 @@ _REDIRECTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=344,
-  serialized_end=454,
+  serialized_start=412,
+  serialized_end=522,
 )
 
 
@@ -333,8 +361,8 @@ _USERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=456,
-  serialized_end=492,
+  serialized_start=524,
+  serialized_end=560,
 )
 
 _ARRAYREDIRECTDATA.fields_by_name['redirects'].message_type = _REDIRECTDATA
@@ -415,8 +443,8 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=495,
-  serialized_end=812,
+  serialized_start=563,
+  serialized_end=880,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetOrgByPath',
