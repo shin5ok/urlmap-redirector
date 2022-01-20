@@ -19,11 +19,15 @@ message RedirectPath {
 message OrgUrl {
   string org = 1;
   string notify_to = 2;
+  string slack_url = 3;
+  string email = 4;
 }
 
 message User {
   string user = 1;
   string notify_to = 2;
+  string slack_url = 3;
+  string email = 4;
 }
 
 message ArrayRedirectData {
