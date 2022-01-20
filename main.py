@@ -16,9 +16,6 @@ import secretm
 client = google.cloud.logging.Client()
 client.setup_logging()
 
-# logging.basicConfig(level=logging.INFO)
-
-
 app = Flask(__name__)
 
 project = os.environ.get("PROJECT")
