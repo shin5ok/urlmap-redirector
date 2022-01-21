@@ -54,7 +54,8 @@ def get_org(path):
         org = stub.GetOrgByPath(req)
         logging.info(f"return value is {org}")
         logging.info(f"/{path} > {org.org}")
-        if not org.org:
+        r = org.org
+        if not r:
             raise Exception(f"no any record for /{path}")
         if topic_id and org.notify_to:
             import run_notify
