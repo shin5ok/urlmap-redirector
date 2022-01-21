@@ -19,9 +19,10 @@ class Pub:
 
 
     def run(self, message):
-        data = message.encode("utf-8")
-        print(data)
         try:
+            print("message: ", message)
+            data = message.encode("utf-8")
+            print("data: ", data)
             publish_future = self.publisher.publish(
                 self.topic_path, data, invoker=__file__,
             )
