@@ -56,15 +56,13 @@ def get_org(path):
         logging.info(f"/{path} > {org.org}")
         if not org.org:
             raise Exception(f"no any record for /{path}")
-        data = org
-        if topic_id and data.notify_to:
+        if topic_id and org.notify_to:
             import run_notify
 
             src_ip = _get_addr()
             logging.info(f"do notify something to {topic_id}")
-            message = f"/{path} to {data.org} from {src_ip}"
-            data["message"] = message
-            print(data)
+            message = f"/{path} to {org.org} from {src_ip}"
+            data = {"message":message, "notify_to": org.notify_to, "slack_url":org.slack_url, "email": org.email}
             run_notify.Pub(project, topic_id).run(json.dumps(data))
     except Exception as e:
         logging.error(str(e))
