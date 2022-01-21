@@ -55,14 +55,15 @@ def get_org(path):
         logging.info(f"/{path} > {org.org}")
         if not org.org:
             raise Exception(f"no any record for /{path}")
-        r = org.org
-        if topic_id and org.notify_to:
+        data = org
+        if topic_id and data.notify_to:
             import run_notify
 
             src_ip = _get_addr()
             logging.info(f"do notify something to {topic_id}")
-            message = f"/{path} to {org.org} from {src_ip}"
-            run_notify.Pub(project, topic_id).run(message)
+            message = f"/{path} to {data.org} from {src_ip}"
+            data["message"] = message
+            run_notify.Pub(project, topic_id).run(data)
     except Exception as e:
         logging.error(str(e))
         r = f"{fail_site_path}/{path}"
