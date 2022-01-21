@@ -5,6 +5,7 @@ import sys
 
 import google.cloud.logging
 import logging
+import json
 
 sys.path.append("pb")
 
@@ -63,7 +64,7 @@ def get_org(path):
             logging.info(f"do notify something to {topic_id}")
             message = f"/{path} to {data.org} from {src_ip}"
             data["message"] = message
-            run_notify.Pub(project, topic_id).run(data)
+            run_notify.Pub(project, topic_id).run(json.dumps(data))
     except Exception as e:
         logging.error(str(e))
         r = f"{fail_site_path}/{path}"

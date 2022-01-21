@@ -20,6 +20,7 @@ class Pub:
 
     def run(self, message):
         data = message.encode("utf-8")
+        print(data)
         try:
             publish_future = self.publisher.publish(
                 self.topic_path, data, invoker=__file__,
