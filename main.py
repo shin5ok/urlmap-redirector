@@ -80,8 +80,8 @@ def _get_addr():
             ip = x[0].split(",")[0]
         else:
             ip = request.remote_addr
-    except:
-        pass
+    except Exception as e:
+        logging.error(str(e))
     return ip
 
 if __name__ == "__main__":
