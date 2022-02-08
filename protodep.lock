@@ -3,7 +3,7 @@ proto_outdir = "./proto"
 [[dependencies]]
   target = "github.com/shin5ok/urlmap-api/proto"
   subgroup = ""
-  revision = "69578be1a84f64cda7fedf4c8f2fbfe7da3922b5"
+  revision = "0377f52c02bab0894b64ce95aa242a4b2a71dabf"
   branch = "main"
   path = ""
   protocol = ""
