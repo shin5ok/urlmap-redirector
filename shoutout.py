@@ -11,7 +11,7 @@ def set_shoutout_when_catching_signal(slack_url: str, channel: str, data_dict: d
         data_dict["text"] = f"{hostname}:signal {sig}"
         data_dict["channel"] = channel
         payload = json.dumps(data_dict)
-        requests.post(slack_url, data=payload)
+        requests.post(slack_url, data=str(payload))
         sys.exit(0)
 
     def _get_where_i_am() -> str:
