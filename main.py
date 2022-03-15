@@ -31,7 +31,7 @@ stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 version = "2022012000"
 
 fail_site_path = "/Failure"
-
+import shoutout
 # reserve path 'Ping'
 @app.route("/")
 @app.route("/Ping")
