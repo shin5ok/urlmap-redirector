@@ -17,7 +17,7 @@ def set_shoutout_when_catching_signal(slack_url: str, channel: str, data_dict: d
     def _get_where_i_am() -> str:
         metadata_url = "http://169.254.169.254/computeMetadata/v1/instance/hostname"
         try:
-            res = requests.get(metadata_url, headers={"Metadata-Flavor":"Google"}, timeout=(0.5,0.5))
+            res = requests.get(metadata_url, headers={"Metadata-Flavor":"Google"}, timeout=(0.2,0.2))
             data = res.content
         except Exception as e:
             print(str(e))
