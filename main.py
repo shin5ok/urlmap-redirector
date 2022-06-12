@@ -18,6 +18,8 @@ import secretm
 client = google.cloud.logging.Client()
 client.setup_logging()
 
+version = "2022061300"
+
 app = Flask(__name__)
 metrics = PrometheusMetrics(app, group_by='path')
 
@@ -33,7 +35,6 @@ topic_id = os.environ.get("TOPIC_ID")
 channel = grpc.insecure_channel(grpc_host)
 stub = pb.urlmap_pb2_grpc.RedirectionStub(channel)
 
-version = "2022012000"
 
 fail_site_path = "/Failure"
 import shoutout
