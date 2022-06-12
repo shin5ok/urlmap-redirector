@@ -7,3 +7,4 @@ google-cloud-secret-manager
 google-cloud-pubsub==2.7.1
 google-cloud-logging>=3.0.0
 prometheus-flask-exporter
+prometheus_flask_exporter

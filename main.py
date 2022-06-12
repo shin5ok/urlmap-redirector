@@ -1,3 +1,4 @@
+from itertools import groupby
 import os
 from flask import Flask, redirect, request
 import grpc
@@ -6,18 +7,22 @@ import sys
 import google.cloud.logging
 import logging
 import json
-
+from prometheus_flask_exporter import PrometheusMetrics
 sys.path.append("pb")
 
 import pb.urlmap_pb2_grpc
 import pb.urlmap_pb2
-
 import secretm
+
 
 client = google.cloud.logging.Client()
 client.setup_logging()
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app, group_by='path')
+
+metrics.info('app_info', 'Application info', version='1.0.3', groupby='')
+metrics.start_http_server(port=18080)
 
 project = os.environ.get("PROJECT")
 grpc_host = os.environ.get("URLMAP_API")
