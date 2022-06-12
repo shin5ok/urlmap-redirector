@@ -18,7 +18,7 @@ import secretm
 client = google.cloud.logging.Client()
 client.setup_logging()
 
-version = "2022061300"
+version: str = "2022061300"
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app, group_by='path')
@@ -91,4 +91,4 @@ def _get_addr():
     return ip
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", "8080")))
