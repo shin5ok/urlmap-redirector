@@ -18,7 +18,7 @@ import secretm
 client = google.cloud.logging.Client()
 client.setup_logging()
 
-version: str = "2022061301"
+version: str = "2022061600"
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app, group_by='path')
