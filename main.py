@@ -1,13 +1,13 @@
 from itertools import groupby
 import os
-from flask import Flask, redirect, request
+from fastapi import FastAPI, Request
+from fastapi.responses import RedirectResponse
 import grpc
 import sys
 
-import google.cloud.logging
-import logging
+from google.cloud import logging
 import json
-from prometheus_flask_exporter import PrometheusMetrics
+from prometheus_fastapi_instrumentator import Instrumentator
 sys.path.append("pb")
 
 import pb.urlmap_pb2_grpc
@@ -15,16 +15,17 @@ import pb.urlmap_pb2
 import secretm
 
 
-client = google.cloud.logging.Client()
+client = logging.Client()
 client.setup_logging()
 
 version: str = "2022061600"
 
-app = Flask(__name__)
-metrics = PrometheusMetrics(app, group_by='path')
+app = FastAPI()
 
-metrics.info('app_info', 'Application info', version='1.0.3', groupby='')
-metrics.start_http_server(port=18080)
+@app.on_event("startup")
+async def startup():
+    Instrumentator().instrument(app).expose(app)
+
 
 project = os.environ.get("PROJECT")
 grpc_host = os.environ.get("URLMAP_API")
@@ -53,7 +54,7 @@ def _fail(path):
 
 
 @app.route("/<path>")
-def get_org(path):
+def get_org(path, request: Request):
     logging.info(f"try to connect to {grpc_host}")
     try:
         req = pb.urlmap_pb2.RedirectPath(path=path)
@@ -66,7 +67,7 @@ def get_org(path):
         if topic_id and org.notify_to:
             import run_notify
 
-            src_ip = _get_addr()
+            src_ip = _get_addr(request)
             logging.info(f"do notify something to {topic_id}")
             message = f"/{path} to {org.org} from {src_ip}"
             data = {"message":message, "notify_to": org.notify_to, "slack_url":org.slack_url, "email": org.email}
@@ -74,9 +75,9 @@ def get_org(path):
     except Exception as e:
         logging.error(str(e))
         r = f"{fail_site_path}/{path}"
-    return redirect(r)
+    return RedirectResponse(r)
 
-def _get_addr():
+def _get_addr(request: Request):
     x = request.headers.getlist("X-Forwarded-For")
     ip = "cannot get ip"
     try:
@@ -91,4 +92,12 @@ def _get_addr():
     return ip
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", "8080")))
+    import uvicorn
+    port = os.environ.get("PORT", "8080")
+    options = {
+            'port': int(port),
+            'host': '0.0.0.0',
+            'workers': 2,
+            'reload': True,
+        }
+    uvicorn.run("main:app", **options)

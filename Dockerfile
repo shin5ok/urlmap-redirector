@@ -9,3 +9,5 @@ RUN pip install --upgrade pip && \
 
 USER nobody
 CMD exec gunicorn -b 0.0.0.0:8080 --error-logfile - --access-logfile - --capture-output main:app
+
+ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION python
